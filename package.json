@@ -3,7 +3,9 @@
         "start": "node server.js"
     },
     "dependencies": {
+        "browserify": "^16.5.0",
         "express": "^4.17.1",
+        "fs": "0.0.1-security",
         "three": "^0.114.0"
     }
 }

@@ -1,12 +1,12 @@
-var THREE = require("three");
+var THREE = require("./three/build/three.js");
 // import * as THREE from "three";
-var STLLoader = require("three/examples/jsm/loaders/STLLoader.js")
+var STLLoader = require("./three/examples/jsm/loaders/STLLoader.js")
 // import { STLLoader } from './STLLoader.js';
-var Stats = require("three/examples/jsm/libs/stats.module.js")
+var Stats = require("./three/examples/jsm/libs/stats.module.js")
 // import Stats from './stats.module.js';
-var GUI = require("three/examples/jsm/libs/dat.gui.module.js")
+var GUI = require("./three/examples/jsm/libs/dat.gui.module.js")
 // import { GUI } from './dat.gui.module.js';
-var OrbitControls = require("three/examples/jsm/controls/OrbitControls")
+var OrbitControls = require("./three/examples/jsm/controls/OrbitControls")
 // import { OrbitControls } from "/three/examples/jsm/controls/OrbitControls";
 
 var container, stats;
