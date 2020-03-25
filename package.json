@@ -1,10 +1,9 @@
 {
     "scripts": {
-        "build": "browserify ./public/js/index.js -o ./public/js/app.js",
         "start": "node server.js"
     },
-    "build": {
-
+    "engines": {
+        "node": "12.16.x"
     },
     "dependencies": {
         "browserify": "^16.5.0",
