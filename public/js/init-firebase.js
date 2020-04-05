@@ -11,5 +11,3 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-var storage = firebase.storage();
-console.log(storage)
