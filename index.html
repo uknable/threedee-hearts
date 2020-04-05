@@ -40,7 +40,9 @@
 
 		var storage = firebase.storage();
 		var storageRef = storage.ref();
+		var model_a = storageRef.child('16571.stl')
 		console.log(storageRef);
+		console.log(model_a);
 
 		var container, stats;
 		var camera, scene, raycaster, renderer;
