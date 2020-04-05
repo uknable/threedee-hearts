@@ -39,7 +39,8 @@
 		import { OrbitControls } from './js/OrbitControls.js';
 
 		var storage = firebase.storage();
-		console.log(storage)
+		var storageRef = storage.ref();
+		console.log(storageRef);
 
 		var container, stats;
 		var camera, scene, raycaster, renderer;
