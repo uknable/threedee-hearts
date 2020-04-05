@@ -11,4 +11,4 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-console.log("firebase initialised");
+console.log(firebase.app().name);
