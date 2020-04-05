@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "threedee-hearts",
+    "hearts": "threedee-hearts"
+  }
+}
