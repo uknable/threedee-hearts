@@ -1,9 +1,9 @@
 
-import * as THREE from './js/three.module.js';
-import { STLLoader } from './js/STLLoader.js';
-import Stats from './js/stats.module.js';
-import { GUI } from './js/dat.gui.module.js';
-import { OrbitControls } from './js/OrbitControls.js';
+// import * as THREE from './js/three.module.js';
+// import { STLLoader } from './js/STLLoader.js';
+// import Stats from './js/stats.module.js';
+// import { GUI } from './js/dat.gui.module.js';
+// import { OrbitControls } from './js/OrbitControls.js';
 
 var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
 var container, stats;
