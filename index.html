@@ -38,14 +38,7 @@
 		import { GUI } from './js/dat.gui.module.js';
 		import { OrbitControls } from './js/OrbitControls.js';
 
-		var storage = firebase.storage();
-		var storageRef = storage.ref('16571.stl');
-		//Works var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
-		
-		// var model_a = storageRef.child('16571.stl').getDownloadURL();
-		var model_a = storageRef
-		console.log(model_a)
-
+		var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
 		var container, stats;
 		var camera, scene, raycaster, renderer;
 
