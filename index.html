@@ -35,8 +35,11 @@
 		<h1 id="tag-info-h">
 			hello
 		</h1>
+		<br>
 		<p id="tag-info-p">
-			information here
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a leo eleifend, rutrum quam a, rutrum mi. Morbi aliquam odio sem, sed varius orci semper ac.
+			<br> <br>
+			Praesent ac bibendum nunc, vel hendrerit urna. Duis in augue sem. In sit amet laoreet orci, vitae auctor ipsum. Morbi porttitor dictum elit id cursus.
 		</p>
 		
 	</div>
@@ -52,8 +55,10 @@
 		var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
 		var container, stats;
 		var camera, scene, raycaster, renderer;
+		var initCameraPos = new THREE.Vector3();
 
 		var mouse = new THREE.Vector2(), INTERSECTED, intersects;
+
 
 		var params = {
 			clipIntersection: true,
@@ -71,6 +76,9 @@
 
 		init();
 		animate();
+
+
+
 
 		function init() {
 
@@ -120,7 +128,7 @@
 			var cylinder1 = new THREE.Mesh( taggeo1, tagmat1);
 			scene.add(cylinder1);
 			cylinder1.position.set(0, 1.5, -1.5);
-			cylinder1.name = "heart_hole"
+			cylinder1.name = "Right Atrium"
 
 				// tag 2
 			var taggeo2 = new THREE.SphereGeometry(tag_radius, tag_segments, tag_segments);
@@ -128,7 +136,9 @@
 			var cylinder2 = new THREE.Mesh(taggeo2, tagmat2);
 			scene.add(cylinder2);
 			cylinder2.position.set(-2, 1, .3);
-			cylinder2.name = "great_artery"
+			cylinder2.name = "Great Artery"
+			// var cyl2cam = new THREE.Vector3();
+			// cyl2cam.setFromMatrixPosition(cylinder2.position.x,cylinder2.position.y, cylinder2.position.z);
 
 			// RAYCASTER
 
@@ -226,8 +236,11 @@
 						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
 						INTERSECTED.material.emissive.setHex(0xff0000);
 
-						document.getElementById("tag-info").hidden = false;
+						// document.getElementById("tag-info").hidden = false;
+						document.getElementById("tag-info").style.visibility = "visible";
 						document.getElementById("tag-info-h").innerHTML = INTERSECTED.name;
+
+
 					}
 
 				}
@@ -235,9 +248,9 @@
 			} else {
 				//give original colour back if not selected
 				if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-				document.getElementById("tag-info").hidden = true;
+				// document.getElementById("tag-info").hidden = true;
+				document.getElementById("tag-info").style.visibility = "hidden";
 				INTERSECTED = null;
-
 			}
 
 		}
