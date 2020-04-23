@@ -8,6 +8,10 @@ body {
 	overscroll-behavior: none;
 }
 
+h1 {
+	font-size: 2em;
+}
+
 a {
 	color: #ff0;
 	text-decoration: none;
@@ -39,6 +43,24 @@ canvas {
 	user-select: none;
 	pointer-events: none;
 	z-index: 1; /* TODO Solve this in HTML */
+}
+
+#tag-info {
+	position: absolute;
+	background: white;
+	top: 20%;
+	left: 50%;
+	width: 50%;
+	padding: 10px;
+	box-sizing: border-box;
+	text-align: center;
+
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	z-index: 2; 
 }
 
 a, button, input, select {
