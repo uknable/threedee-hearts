@@ -116,20 +116,6 @@
 
 			var gui = new GUI();
 
-			// gui.add(params, 'clipIntersection').name('clip intersection').onChange(function (value) {
-
-			// 	var children = group.children;
-
-			// 	for (var i = 0; i < children.length; i++) {
-
-			// 		children[i].material.clipIntersection = value;
-
-			// 	}
-
-			// 	render();
-
-			// });
-
 			gui.add(params, 'planeConstant', -4, 4).step(0.01).name('plane constant').onChange(function (value) {
 
 				for (var j = 0; j < clipPlanes.length; j++) {
