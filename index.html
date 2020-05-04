@@ -57,7 +57,8 @@
 		import { GUI } from './js/dat.gui.module.js';
 		import { OrbitControls } from './js/OrbitControls.js';
 
-		var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
+		// var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
+		var model_a = "https://s3.amazonaws/a.storyblok.com/f/82560/x/23accf12bb/16571.stl"
 		var right_atrium = "https://s3.amazonaws.com/a.storyblok.com/f/82560/x/224abd86be/right-atrium.txt";
 		var posterior_aspect = "https://s3.amazonaws.com/a.storyblok.com/f/82560/x/a23af8e47b/posterior-aspect.txt"
 		var storedText;
@@ -114,8 +115,8 @@
 
 			// LOAD HEART MODEL
 
-			loader.load('./models/16571.stl', function (geometry) {
-				// loader.load(model_a, function (geometry) {
+			// loader.load('./models/16571.stl', function (geometry) {
+				loader.load(model_a, function (geometry) {
 
 				var mesh = new THREE.Mesh(geometry, material);
 				mesh.position.set(0, 15, 77);
