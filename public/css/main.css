@@ -45,7 +45,7 @@ canvas {
 	z-index: 1; /* TODO Solve this in HTML */
 }
 
-#tag-info {
+.tag-info {
 	position: absolute;
 	background: white;
 	top: 20%;
@@ -64,7 +64,7 @@ canvas {
 	z-index: 2; 
 }
 
-#tag-info p {
+.tag-info p {
 	text-align: left;
 }
 
