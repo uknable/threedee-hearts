@@ -1,50 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<title>interactive heart</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<link type="text/css" rel="stylesheet" href="/css/reset.css">
-	<link type="text/css" rel="stylesheet" href="/css/main.css">
-	<style>
-		body {
-			background-color: #f0f0f0;
-			color: #000;
-		}
-
-		a {
-			color: #08f;
-		}
-	</style>
-
-	<!-- <script defer src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
-	<script defer src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
-	<script defer src="https://www.gstatic.com/firebasejs/7.13.2/firebase-storage.js"></script>
-	<script defer src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
-	<script defer src="./js/init-firebase.js"></script> -->
-</head>
-
-<body>
-
-	<div id="info">
+{{{ _editable }}}
+<div id="info">
 		interactive heart
 	</div>
 
-	<div id="tag-info">
-		<h1 id="tag-info-h">
+	<div class="tag-info">
+		<h1 class="tag-info-h">
 			hello
 		</h1>
 		<br>
-		<p id="tag-info-p">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a leo eleifend, rutrum quam a, rutrum mi. Morbi aliquam odio sem, sed varius orci semper ac.
+		<p class="tag-info-p">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a leo eleifend, rutrum quam a, rutrum mi.
+			Morbi aliquam odio sem, sed varius orci semper ac.
 			<br> <br>
-			Praesent ac bibendum nunc, vel hendrerit urna. Duis in augue sem. In sit amet laoreet orci, vitae auctor ipsum. Morbi porttitor dictum elit id cursus.
+			Praesent ac bibendum nunc, vel hendrerit urna. Duis in augue sem. In sit amet laoreet orci, vitae auctor
+			ipsum. Morbi porttitor dictum elit id cursus.
 		</p>
-		
+
 	</div>
 
 	<script type="module">
+		
 
 		import * as THREE from './js/three.module.js';
 		import { STLLoader } from './js/STLLoader.js';
@@ -52,7 +27,10 @@
 		import { GUI } from './js/dat.gui.module.js';
 		import { OrbitControls } from './js/OrbitControls.js';
 
-		var model_a = "https://firebasestorage.googleapis.com/v0/b/threedee-hearts.appspot.com/o/16571.stl?alt=media&token=49a875cc-c3fa-4f81-9249-617b00308bb3"
+		var right_atrium = "https://s3.amazonaws.com/a.storyblok.com/f/82560/x/224abd86be/right-atrium.txt";
+		var posterior_aspect = "https://s3.amazonaws.com/a.storyblok.com/f/82560/x/a23af8e47b/posterior-aspect.txt"
+		var storedText;
+		
 		var container, stats;
 		var camera, scene, raycaster, renderer;
 		var initCameraPos = new THREE.Vector3();
@@ -106,7 +84,6 @@
 			// LOAD HEART MODEL
 
 			loader.load('./models/16571.stl', function (geometry) {
-			// loader.load(model_a, function (geometry) {
 
 				var mesh = new THREE.Mesh(geometry, material);
 				mesh.position.set(0, 15, 77);
@@ -122,21 +99,21 @@
 			var tag_radius = .2;
 			var tag_segments = 12;
 
-				// tag 1 - 
+			// tag 1 - 
 			var taggeo1 = new THREE.SphereGeometry(tag_radius, tag_segments, tag_segments);
-			var tagmat1 = new THREE.MeshPhongMaterial({color: 0xffff00});
-			var cylinder1 = new THREE.Mesh( taggeo1, tagmat1);
+			var tagmat1 = new THREE.MeshPhongMaterial({ color: 0xffff00 });
+			var cylinder1 = new THREE.Mesh(taggeo1, tagmat1);
 			scene.add(cylinder1);
 			cylinder1.position.set(0, 1.5, -1.5);
 			cylinder1.name = "Right Atrium"
 
-				// tag 2
+			// tag 2
 			var taggeo2 = new THREE.SphereGeometry(tag_radius, tag_segments, tag_segments);
-			var tagmat2 = new THREE.MeshPhongMaterial({color: 0xffff00});
+			var tagmat2 = new THREE.MeshPhongMaterial({ color: 0xffff00 });
 			var cylinder2 = new THREE.Mesh(taggeo2, tagmat2);
 			scene.add(cylinder2);
 			cylinder2.position.set(-2, 1, .3);
-			cylinder2.name = "Great Artery"
+			cylinder2.name = "Posterior Aspect"
 			// var cyl2cam = new THREE.Vector3();
 			// cyl2cam.setFromMatrixPosition(cylinder2.position.x,cylinder2.position.y, cylinder2.position.z);
 
@@ -190,7 +167,7 @@
 			document.addEventListener('mousemove', onDocumentMouseMove, false);
 			document.addEventListener("mousedown", onDocumentMouseDown, false);
 			window.addEventListener('resize', onWindowResize, false);
-			
+
 
 		}
 
@@ -228,11 +205,11 @@
 				if (INTERSECTED != intersects[0].object) {
 					//give original colour back if not selected
 					if (INTERSECTED) INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
-					
+
 					INTERSECTED = intersects[0].object;
 
 					//don't highlight the heart
-					if(INTERSECTED.name != "heart") {
+					if (INTERSECTED.name != "heart") {
 						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
 						INTERSECTED.material.emissive.setHex(0xff0000);
 
@@ -240,7 +217,26 @@
 						document.getElementById("tag-info").style.visibility = "visible";
 						document.getElementById("tag-info-h").innerHTML = INTERSECTED.name;
 
-
+						// get text from txt file uploaded on storyblok
+						// feature names are swapped to compensate for time needed to fetch
+						if (INTERSECTED.name == "Right Atrium") {
+							fetch(posterior_aspect)
+							.then((response) => {
+								console.log(response);
+								response.text().then((text) => {
+									storedText = text;
+								});
+							});
+						} else {
+							fetch(right_atrium)
+							.then((response) => {
+								console.log(response);
+								response.text().then((text) => {
+									storedText = text;
+								});
+							});
+						}
+						document.getElementById("tag-info-p").innerHTML = storedText;
 					}
 
 				}
@@ -269,9 +265,3 @@
 
 	</script>
 
-
-
-
-</body>
-
-</html>
