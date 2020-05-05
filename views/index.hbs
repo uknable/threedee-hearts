@@ -83,10 +83,11 @@
 
 			// LOAD HEART MODEL
 
-			loader.load('./models/16571.stl', function (geometry) {
+			loader.load('./models/17040.stl', function (geometry) {
+
+				geometry.center();
 
 				var mesh = new THREE.Mesh(geometry, material);
-				mesh.position.set(0, 15, 77);
 				mesh.rotation.set(0, 0, 0);
 				mesh.scale.set(0.1, 0.1, 0.1);
 				mesh.name = "heart";
