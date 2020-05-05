@@ -20,7 +20,6 @@ Storyblok.get('cdn/stories', {
     response.data.stories.forEach((story) => {
       interestPts.push([story.name, story.content.content])
     });
-    console.log(interestPts)
   }).catch(error => { 
     console.log(error)
   });
